@@ -65,7 +65,7 @@ The project focuses on regression-based price prediction using structured tabula
 
 ### 3.1 Source
 
-The dataset was obtained from **Kaggle**: [Used Car Price Prediction Dataset](https://www.kaggle.com/datasets/sharmajicoder/used-car-price-prediction-dataset) by *sharmajicoder*. It is designed for educational and research purposes in regression modeling.
+The dataset was obtained from **Kaggle**: [Car Price Dataset](https://www.kaggle.com/datasets/mustafaoz158/car-price) by *mustafaoz158*. It is designed for educational and research purposes in regression modeling.
 
 | Property | Value |
 |---|---|
@@ -555,8 +555,8 @@ This project successfully delivered an end-to-end car price prediction system:
 
 ### Dataset
 
-> sharmajicoder. *Used Car Price Prediction Dataset.* Kaggle.  
-> https://www.kaggle.com/datasets/sharmajicoder/used-car-price-prediction-dataset
+> mustafaoz158. *Car Price Dataset.* Kaggle.  
+> https://www.kaggle.com/datasets/mustafaoz158/car-price
 
 ### Libraries & Tools
 
