@@ -228,7 +228,7 @@ Model training is implemented in `utils/model.py` and `utils/evaluation.py`.
 
 The dataset was split using an **80/20** ratio with `random_state=42` for reproducibility:
 
-X_{train}, X_{test}, y_{train}, y_{test} = {train\_test\_split}(X, y,{test\_size}=0.2, {random\_state}=42)
+$$ X_{train}, X_{test}, y_{train}, y_{test} = {train\_test\_split}(X, y,{test\_size}=0.2, {random\_state}=42) $$
 
 ### 7.2 Models Tested
 
