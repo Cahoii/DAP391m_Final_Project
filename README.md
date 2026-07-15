@@ -308,14 +308,14 @@ The trained model is served through a **Flask** web application, providing an in
 ┌──────────────────────────────────────────────────────────┐
 │                     USER BROWSER                         │
 │  ┌────────────────────────────────────────────────────┐  │
-│  │              index.html (Bootstrap 5)               │  │
-│  │  [Brand▼] [Model▼] [Year] [Engine_Size] ... [Submit]│  │
+│  │             index.html (Bootstrap 5)               │  │
+│  │ [Brand▼] [Model▼] [Year] [Engine_Size] ... [Submit]│  │
 │  └────────────────────────────────────────────────────┘  │
 └──────────────────────┬───────────────────────────────────┘
                        │ HTTP POST
                        ▼
 ┌──────────────────────────────────────────────────────────┐
-│                   FLASK SERVER (app.py)                   │
+│                  FLASK SERVER (app.py)                   │
 │                                                          │
 │  1. Parse form data (9 fields)                           │
 │  2. Call predict_price(user_input)                       │
@@ -324,7 +324,7 @@ The trained model is served through a **Flask** web application, providing an in
                        │
                        ▼
 ┌──────────────────────────────────────────────────────────┐
-│                 PREDICTION PIPELINE (predict.py)          │
+│                PREDICTION PIPELINE (predict.py)          │
 │                                                          │
 │  User Input → Feature Engineering → Preprocessing        │
 │  → Column Alignment → model.predict() → Price (USD)      │
