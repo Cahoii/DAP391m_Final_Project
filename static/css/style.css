@@ -1,0 +1,27 @@
+body{
+    background:#f5f7fa;
+}
+
+.main-card{
+    max-width:900px;
+    margin:auto;
+    margin-top:40px;
+    padding:30px;
+
+    background:white;
+
+    border-radius:15px;
+
+    box-shadow:
+    0 0 20px rgba(0,0,0,0.1);
+}
+
+.result-box{
+    margin-top:20px;
+
+    padding:20px;
+
+    background:#e8f5e9;
+
+    border-radius:10px;
+}

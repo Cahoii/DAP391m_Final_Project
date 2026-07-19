@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Car Price Prediction</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="container mt-5">
+
+    <div class="main-card">
+
+        <h1 class="text-center mb-3">
+            🚗 Car Price Prediction
+        </h1>
+
+        <p class="text-center">
+            Machine Learning Project using XGBoost / Random Forest / Linear Regression
+        </p>
+
+        <hr>
+
+        <form method="POST">
+
+            <div class="row">
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Brand
+                    </label>
+
+                    <select
+                            id="brand"
+                            name="Brand"
+                            class="form-control">
+
+                        {% for b in brands %}
+
+                        <option
+                                value="{{ b }}"
+                                {% if form.Brand==b %}selected{% endif %}>
+
+                            {{ b }}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <label class="form-label">
+                        Model
+                    </label>
+
+                    <select
+                            id="model"
+                            name="Model"
+                            class="form-control">
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Year
+                    </label>
+
+                    <select
+                            name="Year"
+                            class="form-control">
+
+                        {% for y in range(2026,1999,-1) %}
+
+                        <option
+                                value="{{y}}"
+                                {% if form.Year==y|string %}selected{% endif %}>
+
+                            {{y}}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Engine Size
+                    </label>
+
+                    <select
+                            name="Engine_Size"
+                            class="form-control">
+
+                        {% for e in engine_sizes %}
+
+                        <option
+                                value="{{e}}"
+                                {% if form.Engine_Size==e|string %}selected{% endif %}>
+
+                            {{e}}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Mileage
+                    </label>
+
+                    <input
+                            type="number"
+                            step="0.1"
+                            min="0"
+                            required
+                            class="form-control"
+                            name="Mileage"
+                            value="{{ form.Mileage if form else '' }}">
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="row">
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Fuel Type
+                    </label>
+
+                    <select
+                            name="Fuel_Type"
+                            class="form-control">
+
+                        {% for f in fuel_types %}
+
+                        <option
+                                value="{{f}}"
+                                {% if form.Fuel_Type==f %}selected{% endif %}>
+
+                            {{f}}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Transmission
+                    </label>
+
+                    <select
+                            name="Transmission"
+                            class="form-control">
+
+                        {% for t in transmissions %}
+
+                        <option
+                                value="{{t}}"
+                                {% if form.Transmission==t %}selected{% endif %}>
+
+                            {{t}}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <label class="form-label">
+                        Doors
+                    </label>
+
+                    <select
+                            name="Doors"
+                            class="form-control">
+
+                        {% for d in [2,3,4,5] %}
+
+                        <option
+                                value="{{d}}"
+                                {% if form.Doors==d|string %}selected{% endif %}>
+
+                            {{d}}
+
+                        </option>
+
+                        {% endfor %}
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <div class="row">
+
+                <div class="col-md-12">
+
+                    <label class="form-label">
+                        Owner Count
+                    </label>
+
+                    <input
+                            type="number"
+                            min="1"
+                            max="10"
+                            required
+                            class="form-control"
+                            name="Owner_Count"
+                            value="{{ form.Owner_Count if form else '' }}">
+
+                </div>
+
+            </div>
+
+            <br>
+
+            <button
+                    class="btn btn-primary w-100"
+                    type="submit">
+
+                Predict Price
+
+            </button>
+
+        </form>
+
+        {% if prediction %}
+
+        <div class="result-box mt-4">
+
+            <h4 class="text-center">
+
+                Predicted Price
+
+            </h4>
+
+            <h2 class="text-center text-success">
+
+                ${{ "{:,.0f}".format(prediction) }}
+
+            </h2>
+
+        </div>
+
+        {% endif %}
+
+        <hr>
+
+        <h5>
+
+            Model Information
+
+        </h5>
+
+        <ul>
+
+            <li>Linear Regression</li>
+
+            <li>Random Forest</li>
+
+            <li>XGBoost</li>
+
+        </ul>
+
+        <p>
+
+            Best model automatically selected during training.
+
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+const brandModels = {{ brand_models|tojson }};
+
+const brandSelect = document.getElementById("brand");
+
+const modelSelect = document.getElementById("model");
+
+const selectedModel = "{{ form.Model if form else '' }}";
+
+function updateModels(){
+
+    const brand = brandSelect.value;
+
+    modelSelect.innerHTML = "";
+
+    brandModels[brand].forEach(function(model){
+
+        let option = document.createElement("option");
+
+        option.value = model;
+
+        option.text = model;
+
+        if(model===selectedModel){
+
+            option.selected = true;
+
+        }
+
+        modelSelect.appendChild(option);
+
+    });
+
+}
+
+updateModels();
+
+brandSelect.addEventListener("change",updateModels);
+
+</script>
+
+</body>
+
+</html>

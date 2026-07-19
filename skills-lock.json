@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "deepfork": {
+      "source": "GerardoRdz96/deepfork",
+      "sourceType": "github",
+      "skillPath": "skills/deepfork/SKILL.md",
+      "computedHash": "d0ee26bc7b94677439c2f5ccfdc55fa0fcf06e1389de8dd4664a632c424255ac"
+    }
+  }
+}
